@@ -10,12 +10,12 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var viewModel: RecipesListViewModel
     var body: some View {
-        VStack{
-            RecipesListView(viewModel: viewModel)
-        }
+        RecipesListView(viewModel: viewModel)
     }
 }
 
 #Preview {
-    ContentView().environmentObject(RecipesListViewModel())
+    ContentView()
+        .environmentObject(RecipesListViewModel())
+        .environmentObject(RecipeDetailViewModel())
 }

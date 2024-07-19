@@ -8,7 +8,14 @@
 import Foundation
 
 struct RecipeDetail: Codable {
-    let id: String
-    let ingredients: [Ingredient]
+    let idMeal: String
+    let name: String
+    let category: String
+    let area: String
     let instructions: String
+    let thumbnail: String
+    let tags: String?
+    let youtubeURL: String?
+    let ingredients: [String]
+    let measures: [String]
 }
