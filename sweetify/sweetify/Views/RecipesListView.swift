@@ -10,39 +10,69 @@ import SwiftUI
 
 struct RecipesListView: View {
     @ObservedObject var viewModel: RecipesListViewModel
+    @State private var searchText = ""
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                List(viewModel.recipes.indices, id: \.self) { index in
-                    NavigationLink(destination: RecipeDetailView(id: viewModel.recipes[index].id)){
-                        RecipeCell(recipe: viewModel.recipes[index])
+                ScrollView{
+                    ForEach(searchResults.indices, id: \.self) { index in
+                        NavigationLink(destination: RecipeDetailView(id: viewModel.recipes[index].id)){
+                            RecipeCell(recipe: viewModel.recipes[index])
+                        }
                     }
-                }
+                }.navigationTitle("Sweetify Desserts")
+                .searchable(text: $searchText)
             }
-        }                
+        }
         .onAppear{
         print("fetching recipes")
         viewModel.fetchRecipes()
         }
 
     }
+    
+    var searchResults: [RecipeSummary] {
+        if searchText.isEmpty {
+            return viewModel.recipes
+        } else {
+            return viewModel.recipes.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        }
+    }
 }
 
 struct RecipeCell: View {
     let recipe: RecipeSummary
     var body: some View {
-        HStack{
+        ZStack(){
             AsyncImage(url: URL(string: "\(recipe.thumbnail)")) { image in
-                image.resizable()
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .overlay(Color.black.opacity(0.4))
             } placeholder: {
                 ProgressView()
             }
-            .frame(width: 30, height: 30)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            Text("\(recipe.name)")
-            
+            VStack(alignment: .leading) {
+                Text("\(recipe.name)")
+                    .font(.title2)
+                    .bold()
+                    .foregroundColor(Color.white)
+                    .multilineTextAlignment(.leading)
+                Text("Dessert")
+                    .foregroundColor(Color.white)
+                Spacer()
+                HStack {
+                    Spacer()
+                    Image(systemName: "arrowshape.forward.circle.fill")
+                        .foregroundColor(Color.white)
+                }
+            }
+            .frame(width: UIScreen.main.bounds.width*0.70, height: 150, alignment: .leading)
         }
+        .frame(width: UIScreen.main.bounds.width*0.85, height: 200, alignment: .leading)
+        .background(Color("SelectInactive"))
+        .clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }
 
