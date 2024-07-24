@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
-    @EnvironmentObject var viewModel: RecipesListViewModel
+    @EnvironmentObject var viewModel : RecipesListViewModel
     var body: some View {
-        RecipesListView(viewModel: viewModel)
+        RecipesListView()
     }
 }
 

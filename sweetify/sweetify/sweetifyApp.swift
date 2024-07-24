@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import Combine
 
 @main
 struct sweetifyApp: App {
+    @StateObject var viewModel = RecipesListViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(viewModel)
         }
     }
 }

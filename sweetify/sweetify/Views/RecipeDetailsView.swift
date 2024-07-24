@@ -42,7 +42,7 @@ struct RecipeDetailView: View {
                                 .padding()
                                 .background(selectedDetail == detail ?  Color.pink : Color("SelectInactive"))
                                 .cornerRadius(10)
-                        }
+                        }.frame(width:UIScreen.main.bounds.width * 0.40)
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.85, alignment: .leading)

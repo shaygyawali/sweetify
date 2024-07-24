@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 struct RecipesListView: View {
-    @ObservedObject var viewModel: RecipesListViewModel
+    @EnvironmentObject var viewModel : RecipesListViewModel
+    @StateObject var detailViewModel = RecipeDetailViewModel()
     @State private var searchText = ""
     var recipes : [RecipeSummary] = []
     private let recipeFetcher = RecipeFetcher()
@@ -32,6 +33,7 @@ struct RecipesListView: View {
         print("fetching recipes")
         viewModel.getRecipes()
         }
+        .environmentObject(detailViewModel)
 
     }
     
