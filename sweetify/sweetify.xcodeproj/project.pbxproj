@@ -25,6 +25,7 @@
 		5FDE3BF52C4DC99100D42255 /* notsure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3BF42C4DC99100D42255 /* notsure.swift */; };
 		5FDE3BF72C4DD35100D42255 /* RecipeIngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3BF62C4DD35100D42255 /* RecipeIngredientsView.swift */; };
 		5FDE3BF92C4DD36800D42255 /* RecipeInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3BF82C4DD36800D42255 /* RecipeInstructionsView.swift */; };
+		5FDE3BFB2C4E1DB000D42255 /* RecipeFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3BFA2C4E1DB000D42255 /* RecipeFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		5FDE3BF42C4DC99100D42255 /* notsure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notsure.swift; sourceTree = "<group>"; };
 		5FDE3BF62C4DD35100D42255 /* RecipeIngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIngredientsView.swift; sourceTree = "<group>"; };
 		5FDE3BF82C4DD36800D42255 /* RecipeInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInstructionsView.swift; sourceTree = "<group>"; };
+		5FDE3BFA2C4E1DB000D42255 /* RecipeFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				5FCF8BD52C4ADF7900E6ED9C /* Ingredient.swift */,
 				5FCF8BD92C4AE13F00E6ED9C /* RecipeSummary.swift */,
 				5FCF8BDB2C4AE1AE00E6ED9C /* RecipeDetail.swift */,
+				5FDE3BFA2C4E1DB000D42255 /* RecipeFetcher.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				5FDE3BF92C4DD36800D42255 /* RecipeInstructionsView.swift in Sources */,
 				5FDE3BF72C4DD35100D42255 /* RecipeIngredientsView.swift in Sources */,
 				5FCF8BA62C4ADD8900E6ED9C /* sweetifyApp.swift in Sources */,
+				5FDE3BFB2C4E1DB000D42255 /* RecipeFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

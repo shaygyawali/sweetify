@@ -7,8 +7,23 @@
 
 import Foundation
 
+struct Wrapper: Codable {
+    let items: [RecipeSummary]
+    
+    enum CodingKeys: String, CodingKey {
+        case items = "meals"
+    }
+}
+
 struct RecipeSummary: Codable {
-    let id: String
     let name: String
     let thumbnail: String
+    let id: String
+
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "strMeal"
+        case thumbnail = "strMealThumb"
+        case id = "idMeal"
+    }
 }

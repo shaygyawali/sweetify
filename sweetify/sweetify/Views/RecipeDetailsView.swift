@@ -34,6 +34,15 @@ struct RecipeDetailView: View {
                     .font(.largeTitle).bold()
                     .frame(width: UIScreen.main.bounds.width * 0.85, alignment: .leading)
                     .padding(.top, 40)
+                if let tags = viewModel.detail?.tags {
+                    let tagList = viewModel.listifyTags(tags: tags)
+                    ForEach(tagList.indices) { index in
+                        Text("\(tagList[index]) ")
+                        .frame(width: UIScreen.main.bounds.width * 0.85, alignment: .leading)
+                        .foregroundColor(Color(.lightGray))
+                        .padding(.bottom, 20)
+                    }
+                }
 
                 HStack {
                     ForEach(Detail.allCases) { detail in

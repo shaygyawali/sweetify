@@ -11,6 +11,9 @@ import SwiftUI
 struct RecipesListView: View {
     @ObservedObject var viewModel: RecipesListViewModel
     @State private var searchText = ""
+    var recipes : [RecipeSummary] = []
+    private let recipeFetcher = RecipeFetcher()
+
     
     var body: some View {
         NavigationView {
@@ -27,7 +30,7 @@ struct RecipesListView: View {
         }
         .onAppear{
         print("fetching recipes")
-        viewModel.fetchRecipes()
+        viewModel.getRecipes()
         }
 
     }
