@@ -12,7 +12,10 @@ struct RecipeInstructionsView: View {
     let instructions: [String]
     var body: some View {
         List(instructions.indices, id: \.self) { index in
-            Text("\(String(index + 1)). \(instructions[index])")
+            let trimmed = instructions[index].trimmingCharacters(in: .whitespacesAndNewlines)
+            if !trimmed.isEmpty {
+                Text("\(String(index + 1)). \(trimmed)")
+            }
         }
         .scrollContentBackground(.hidden)
 

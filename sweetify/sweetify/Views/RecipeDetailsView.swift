@@ -30,20 +30,7 @@ struct RecipeDetailView: View {
                 Spacer()
             }
             VStack(alignment: .center) {
-                Text("\(viewModel.detail?.name ?? "Recipe Details")")
-                    .font(.largeTitle).bold()
-                    .frame(width: UIScreen.main.bounds.width * 0.85, alignment: .leading)
-                    .padding(.top, 40)
-                if let tags = viewModel.detail?.tags {
-                    let tagList = viewModel.listifyTags(tags: tags)
-                    ForEach(tagList.indices) { index in
-                        Text("\(tagList[index]) ")
-                        .frame(width: UIScreen.main.bounds.width * 0.85, alignment: .leading)
-                        .foregroundColor(Color(.lightGray))
-                        .padding(.bottom, 20)
-                    }
-                }
-
+                RecipeHeader(viewModel: _viewModel)
                 HStack {
                     ForEach(Detail.allCases) { detail in
                         Button(action: {
@@ -78,7 +65,7 @@ struct RecipeDetailView: View {
                 
                 Spacer()
             }
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.6)
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.65)
             .edgesIgnoringSafeArea(.bottom)
             .background(Color(.white))
             .clipShape(RoundedRectangle(cornerRadius: 50.0))
@@ -96,6 +83,62 @@ struct RecipeDetailView: View {
                 }
             }
         }
+    }
+}
+
+struct RecipeHeader: View {
+    @EnvironmentObject var viewModel: RecipeDetailViewModel
+    var body: some View {
+        Text("\(viewModel.detail?.name ?? "Recipe Details")")
+            .font(.largeTitle).bold()
+            .frame(width: UIScreen.main.bounds.width * 0.85, alignment: .leading)
+            .padding(.top, 40)
+        
+        if let tags = viewModel.detail?.tags {
+            let tagList = viewModel.listifyTags(tags: tags)
+            ForEach(tagList.indices) { index in
+                Text("\(tagList[index]) ")
+                .frame(width: UIScreen.main.bounds.width * 0.85, alignment: .leading)
+                .foregroundColor(Color(.lightGray))
+                .padding(.bottom, 5)
+            }
+        }
+        
+        HStack (alignment: .bottom){
+            VStack(alignment: .center) {
+                Image(systemName: "globe.americas.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 50, height: 50)
+                if let area = viewModel.detail?.area{
+                    Text("\(area)")
+                }
+            }
+            Spacer()
+            VStack(alignment: .center) {
+                Image(systemName: "birthday.cake.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 50, height: 50)
+                Text("Dessert")
+            }
+            Spacer()
+            VStack{
+                if let instructions = viewModel.detail?.instructions {
+                    let instructionsList = viewModel.listifyInstructions(instructions: instructions)
+                    let imgString = "\(instructionsList.count).square"
+                    Image(systemName: imgString)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 50, height: 50)
+                    Text("Steps")
+                }
+            }
+
+        }.padding(.top, 10).padding(.bottom, 15)
+         .frame(width: UIScreen.main.bounds.width * 0.80, alignment: .leading)
+
+
     }
 }
                            
