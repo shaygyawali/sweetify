@@ -12,21 +12,32 @@ class RecipesListViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
-    private let recipeFetcher = RecipeFetcher()
+    private let recipeFetcher : RecipeFetching
+    
+    init(recipeFetcher: RecipeFetching){
+        self.recipeFetcher = recipeFetcher
+    }
     
     func getRecipes() {
         isLoading = true
         errorMessage = nil
         
+        // Making sure UI updates are made on the main thread
         Task {
             do {
                 let fetchedRecipes = try await recipeFetcher.fetchRecipes()
+                await MainActor.run {
+                    self.recipes = fetchedRecipes
+                    self.isLoading = false
+                }
                 self.recipes = fetchedRecipes
             } catch {
-                self.errorMessage = error.localizedDescription
+                await MainActor.run {
+                    self.errorMessage = error.localizedDescription
+                    self.isLoading = false
+                }
             }
             isLoading = false
-            print("🌎 \(recipes)")
         }
     }
 }

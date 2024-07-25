@@ -15,8 +15,8 @@ struct ContentView: View {
     }
 }
 
-#Preview {
+/*#Preview {
     ContentView()
-        .environmentObject(RecipesListViewModel())
-        .environmentObject(RecipeDetailViewModel())
-}
+        .environmentObject(RecipesListViewModel(recipeFetcher: RecipeFetcher()))
+        .environmentObject(RecipeDetailViewModel(recipeFetcher: RecipeFetcher()))
+}*/

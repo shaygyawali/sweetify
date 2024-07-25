@@ -12,11 +12,10 @@ class RecipeDetailViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     
-    private let recipeFetcher = RecipeFetcher()
-    
-    func fetchRecipeDetails() {
-        print("📍 \(detail?.name)")
-        print("📍 \(detail?.ingredients)")
+    private var recipeFetcher: RecipeFetching
+
+    init(recipeFetcher: RecipeFetching) {
+        self.recipeFetcher = recipeFetcher
     }
     
     func listifyInstructions(instructions: String) -> [String] {
@@ -35,12 +34,16 @@ class RecipeDetailViewModel: ObservableObject {
         Task {
             do {
                 let finalDetails = try await recipeFetcher.fetchRecipe(idMeal: id)
-                self.detail = finalDetails
+                await MainActor.run {
+                    self.detail = finalDetails
+                    self.isLoading = false
+                }
             } catch {
-                self.errorMessage = error.localizedDescription
+                await MainActor.run {
+                    self.errorMessage = error.localizedDescription
+                    self.isLoading = false
+                }
             }
-            isLoading = false
-            print("🏳️ \(detail)")
         }
         
     }

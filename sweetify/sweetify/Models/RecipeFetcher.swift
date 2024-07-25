@@ -7,7 +7,12 @@
 
 import Foundation
 
-actor RecipeFetcher {
+protocol RecipeFetching {
+    func fetchRecipes() async throws -> [RecipeSummary]
+    func fetchRecipe(idMeal: String) async throws -> RecipeDetail
+}
+
+actor RecipeFetcher: RecipeFetching {
     private let apiURL = "https://themealdb.com/api/json/v1/1/filter.php?c=Dessert"
     
     func fetchRecipes() async throws -> [RecipeSummary] {
@@ -16,7 +21,7 @@ actor RecipeFetcher {
         }
         let (data, _) = try await URLSession.shared.data(from: url)
         let response = try JSONDecoder().decode(Wrapper.self, from: data)
-        print("🇺🇸 \(response.items)")
+        print("All recipes: \(response.items)")
         return response.items
     }
     
@@ -28,12 +33,11 @@ actor RecipeFetcher {
         }
         let (data, _) = try await URLSession.shared.data(from: url)
         let response = try JSONDecoder().decode(DetailWrapper.self, from: data)
-        print("🇦🇷 \(response.items)")
 
         guard let detail = response.items.first else {
             throw URLError(.badServerResponse)
         }
-        print("🇦🇷 \(detail)")
+        print("Details: \(detail)")
         return detail
     }
 }

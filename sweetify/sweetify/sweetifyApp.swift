@@ -10,10 +10,11 @@ import Combine
 
 @main
 struct sweetifyApp: App {
-    @StateObject var viewModel = RecipesListViewModel()
+    private var recipeFetcher = RecipeFetcher()
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(viewModel)
+            ContentView().environmentObject(RecipesListViewModel(recipeFetcher: recipeFetcher))
+                .environmentObject(RecipeDetailViewModel(recipeFetcher: recipeFetcher))
         }
     }
 }

@@ -10,11 +10,9 @@ import SwiftUI
 
 struct RecipesListView: View {
     @EnvironmentObject var viewModel : RecipesListViewModel
-    @StateObject var detailViewModel = RecipeDetailViewModel()
+    @EnvironmentObject var detailViewModel: RecipeDetailViewModel
     @State private var searchText = ""
     var recipes : [RecipeSummary] = []
-    private let recipeFetcher = RecipeFetcher()
-
     
     var body: some View {
         NavigationView {

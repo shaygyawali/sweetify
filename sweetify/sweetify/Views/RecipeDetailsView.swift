@@ -65,7 +65,7 @@ struct RecipeDetailView: View {
                 
                 Spacer()
             }
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.65)
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.75)
             .edgesIgnoringSafeArea(.bottom)
             .background(Color(.white))
             .clipShape(RoundedRectangle(cornerRadius: 50.0))
@@ -73,7 +73,6 @@ struct RecipeDetailView: View {
         }
         .onAppear {
             viewModel.findRecipe(id: id)
-            viewModel.fetchRecipeDetails()
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
