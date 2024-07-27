@@ -67,6 +67,20 @@ struct RecipeDetail: Codable {
         measures = measurementsHolder
     }
     
+    // custom initializer
+    init(idMeal: String, name: String, category: String, area: String, instructions: String, thumbnail: String, tags: String?, youtubeURL: String?, ingredients: [String], measures: [String]) {
+        self.idMeal = idMeal
+        self.name = name
+        self.category = category
+        self.area = area
+        self.instructions = instructions
+        self.thumbnail = thumbnail
+        self.tags = tags
+        self.youtubeURL = youtubeURL
+        self.ingredients = ingredients
+        self.measures = measures
+    }
+    
     struct AdditionalKeys: CodingKey {
         var stringValue: String
         var intValue: Int?

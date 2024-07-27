@@ -31,6 +31,8 @@ class RecipeDetailViewModel: ObservableObject {
     func findRecipe(id: String){
         isLoading = true
         errorMessage = nil
+        
+        // M
         Task {
             do {
                 let finalDetails = try await recipeFetcher.fetchRecipe(idMeal: id)
@@ -40,10 +42,12 @@ class RecipeDetailViewModel: ObservableObject {
                 }
             } catch {
                 await MainActor.run {
+                    print("🥊 ERROR \(error.localizedDescription)")
                     self.errorMessage = error.localizedDescription
                     self.isLoading = false
                 }
             }
+            isLoading = false
         }
         
     }

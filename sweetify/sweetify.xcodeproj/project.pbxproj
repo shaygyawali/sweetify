@@ -26,8 +26,9 @@
 		5FDE3BF72C4DD35100D42255 /* RecipeIngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3BF62C4DD35100D42255 /* RecipeIngredientsView.swift */; };
 		5FDE3BF92C4DD36800D42255 /* RecipeInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3BF82C4DD36800D42255 /* RecipeInstructionsView.swift */; };
 		5FDE3BFB2C4E1DB000D42255 /* RecipeFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3BFA2C4E1DB000D42255 /* RecipeFetcher.swift */; };
-		5FDE3BFF2C53077800D42255 /* RecipeFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3BFE2C53077800D42255 /* RecipeFetcherTests.swift */; };
 		5FDE3C022C530ACF00D42255 /* MockRecipeFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3C012C530ACF00D42255 /* MockRecipeFetcher.swift */; };
+		5FDE3C062C53490A00D42255 /* RecipeListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3C052C53490A00D42255 /* RecipeListViewModelTests.swift */; };
+		5FDE3C082C534CDA00D42255 /* RecipeDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3C072C534CDA00D42255 /* RecipeDetailViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,8 +71,9 @@
 		5FDE3BF62C4DD35100D42255 /* RecipeIngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIngredientsView.swift; sourceTree = "<group>"; };
 		5FDE3BF82C4DD36800D42255 /* RecipeInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInstructionsView.swift; sourceTree = "<group>"; };
 		5FDE3BFA2C4E1DB000D42255 /* RecipeFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFetcher.swift; sourceTree = "<group>"; };
-		5FDE3BFE2C53077800D42255 /* RecipeFetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFetcherTests.swift; sourceTree = "<group>"; };
 		5FDE3C012C530ACF00D42255 /* MockRecipeFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRecipeFetcher.swift; sourceTree = "<group>"; };
+		5FDE3C052C53490A00D42255 /* RecipeListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModelTests.swift; sourceTree = "<group>"; };
+		5FDE3C072C534CDA00D42255 /* RecipeDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +148,8 @@
 			children = (
 				5FDE3C002C530AB300D42255 /* Mocks */,
 				5FCF8BB62C4ADD8C00E6ED9C /* sweetifyTests.swift */,
-				5FDE3BFE2C53077800D42255 /* RecipeFetcherTests.swift */,
+				5FDE3C052C53490A00D42255 /* RecipeListViewModelTests.swift */,
+				5FDE3C072C534CDA00D42255 /* RecipeDetailViewModelTests.swift */,
 			);
 			path = sweetifyTests;
 			sourceTree = "<group>";
@@ -361,8 +364,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FDE3C022C530ACF00D42255 /* MockRecipeFetcher.swift in Sources */,
-				5FDE3BFF2C53077800D42255 /* RecipeFetcherTests.swift in Sources */,
+				5FDE3C062C53490A00D42255 /* RecipeListViewModelTests.swift in Sources */,
 				5FCF8BB72C4ADD8C00E6ED9C /* sweetifyTests.swift in Sources */,
+				5FDE3C082C534CDA00D42255 /* RecipeDetailViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
