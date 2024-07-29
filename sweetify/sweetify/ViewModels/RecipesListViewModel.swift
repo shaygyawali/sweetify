@@ -27,8 +27,9 @@ class RecipesListViewModel: ObservableObject {
             do {
                 print("Fetching recipes FROM VM")
                 let fetchedRecipes = try await recipeFetcher.fetchRecipes()
+                let sortedRecipes = fetchedRecipes.sorted { $0.name.lowercased() < $1.name.lowercased() }
                 await MainActor.run {
-                    self.recipes = fetchedRecipes
+                    self.recipes = sortedRecipes
                     self.isLoading = false
                 }
                 self.recipes = fetchedRecipes
