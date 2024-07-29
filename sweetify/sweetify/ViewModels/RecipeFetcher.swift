@@ -22,7 +22,9 @@ actor RecipeFetcher: RecipeFetching {
         let (data, _) = try await URLSession.shared.data(from: url)
         let response = try JSONDecoder().decode(Wrapper.self, from: data)
         print("All recipes: \(response.items)")
-        return response.items
+        return await MainActor.run {
+            response.items
+        }
     }
     
     func fetchRecipe(idMeal: String) async throws -> RecipeDetail {
@@ -38,6 +40,8 @@ actor RecipeFetcher: RecipeFetching {
             throw URLError(.badServerResponse)
         }
         print("Details: \(detail)")
-        return detail
+        return await MainActor.run {
+            detail
+        }
     }
 }

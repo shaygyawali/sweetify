@@ -19,8 +19,8 @@ struct RecipesListView: View {
             VStack(alignment: .leading) {
                 ScrollView{
                     ForEach(searchResults.indices, id: \.self) { index in
-                        NavigationLink(destination: RecipeDetailView(id: viewModel.recipes[index].id)){
-                            RecipeCell(recipe: viewModel.recipes[index])
+                        NavigationLink(destination: RecipeDetailView(id: searchResults[index].id)){
+                            RecipeCell(recipe: searchResults[index])
                         }
                     }
                 }.navigationTitle("Sweetify Desserts")
@@ -28,8 +28,15 @@ struct RecipesListView: View {
             }
         }
         .onAppear{
-        print("fetching recipes")
-        viewModel.getRecipes()
+        print("View Appeared: Fetching recipes")
+            Task {
+                do {
+                    try await viewModel.getRecipes()
+                }
+                catch {
+                    print("Failed to get recipes: \(error.localizedDescription)")
+                }
+            }
         }
         .environmentObject(detailViewModel)
 
@@ -37,9 +44,14 @@ struct RecipesListView: View {
     
     var searchResults: [RecipeSummary] {
         if searchText.isEmpty {
+            print("SearchBar: Search text is empty, returning all recipes")
             return viewModel.recipes
         } else {
-            return viewModel.recipes.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+            let lowercasedSearchText = searchText.lowercased()
+            let filteredResults = viewModel.recipes.filter { $0.name.lowercased().contains(lowercasedSearchText) }
+            print("SearchBar: Filtering recipes with search text: \(searchText)")
+            print("SearchBar: Filtered results: \(filteredResults.map { $0.name })")
+            return filteredResults
         }
     }
 }
@@ -54,7 +66,9 @@ struct RecipeCell: View {
                     .aspectRatio(contentMode: .fill)
                     .overlay(Color.black.opacity(0.4))
             } placeholder: {
-                ProgressView()
+                Image("sweetifyLoading")
+                    .overlay(Color.black.opacity(0.2))
+
             }
             VStack(alignment: .leading) {
                 Text("\(recipe.name)")

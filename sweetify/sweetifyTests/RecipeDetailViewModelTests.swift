@@ -19,13 +19,15 @@ class RecipeDetailViewModelTests: XCTestCase {
 
     
     func testFetchRecipeDetailSuccessfully() async {
-        let expectation = XCTestExpectation(description: "Fetching recipes completes")
-        
+        let expectation = XCTestExpectation(description: "Expectation: Fetching recipes completes")
         
         Task {
-            await viewModel.findRecipe(id: "52910")
-            expectation.fulfill()
-
+            do {
+                try await viewModel.findRecipe(id: "52910")
+                expectation.fulfill()
+            } catch {
+                print("Fetch recipe function not executed")
+            }
         }
         
         await fulfillment(of: [expectation], timeout: 2.0)
@@ -43,9 +45,13 @@ class RecipeDetailViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Fetching recipe completes")
         
         Task {
-            await errViewModel.findRecipe(id: "52918")
-            expectation.fulfill()
-
+            do {
+                try await errViewModel.findRecipe(id: "52910")
+                expectation.fulfill()
+            } catch {
+                print("Fetch recipe function not executed")
+                expectation.fulfill()
+            }
         }
         
         await fulfillment(of: [expectation], timeout: 5.0)

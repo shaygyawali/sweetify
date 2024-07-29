@@ -11,13 +11,22 @@ import SwiftUI
 struct RecipeInstructionsView: View {
     let instructions: [String]
     var body: some View {
-        List(instructions.indices, id: \.self) { index in
-            let trimmed = instructions[index].trimmingCharacters(in: .whitespacesAndNewlines)
-            if !trimmed.isEmpty {
-                Text("\(String(index + 1)). \(trimmed)")
+        if #available(iOS 16.0, *) {
+            List(instructions.indices, id: \.self) { index in
+                let trimmed = instructions[index].trimmingCharacters(in: .whitespacesAndNewlines)
+                if !trimmed.isEmpty {
+                    Text("\(String(index + 1)). \(trimmed)")
+                }
             }
+            .scrollContentBackground(.hidden)
+        } else {
+            List(instructions.indices, id: \.self) { index in
+                let trimmed = instructions[index].trimmingCharacters(in: .whitespacesAndNewlines)
+                if !trimmed.isEmpty {
+                    Text("\(String(index + 1)). \(trimmed)")
+                }
+            }
+            .background(Color.clear)
         }
-        .scrollContentBackground(.hidden)
-
     }
 }

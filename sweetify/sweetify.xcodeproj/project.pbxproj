@@ -14,7 +14,6 @@
 		5FCF8BB72C4ADD8C00E6ED9C /* sweetifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF8BB62C4ADD8C00E6ED9C /* sweetifyTests.swift */; };
 		5FCF8BC12C4ADD8C00E6ED9C /* sweetifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF8BC02C4ADD8C00E6ED9C /* sweetifyUITests.swift */; };
 		5FCF8BC32C4ADD8C00E6ED9C /* sweetifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF8BC22C4ADD8C00E6ED9C /* sweetifyUITestsLaunchTests.swift */; };
-		5FCF8BD62C4ADF7900E6ED9C /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF8BD52C4ADF7900E6ED9C /* Ingredient.swift */; };
 		5FCF8BD82C4AE0B700E6ED9C /* RecipesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF8BD72C4AE0B700E6ED9C /* RecipesListViewModel.swift */; };
 		5FCF8BDA2C4AE13F00E6ED9C /* RecipeSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF8BD92C4AE13F00E6ED9C /* RecipeSummary.swift */; };
 		5FCF8BDC2C4AE1AE00E6ED9C /* RecipeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF8BDB2C4AE1AE00E6ED9C /* RecipeDetail.swift */; };
@@ -22,7 +21,6 @@
 		5FCF8BE02C4B12B600E6ED9C /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF8BDF2C4B12B600E6ED9C /* RecipeDetailViewModel.swift */; };
 		5FCF8BE22C4B180900E6ED9C /* RecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF8BE12C4B180900E6ED9C /* RecipeDetailsView.swift */; };
 		5FCF8BE52C4CD28B00E6ED9C /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCF8BE42C4CD28B00E6ED9C /* BackButton.swift */; };
-		5FDE3BF52C4DC99100D42255 /* notsure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3BF42C4DC99100D42255 /* notsure.swift */; };
 		5FDE3BF72C4DD35100D42255 /* RecipeIngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3BF62C4DD35100D42255 /* RecipeIngredientsView.swift */; };
 		5FDE3BF92C4DD36800D42255 /* RecipeInstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3BF82C4DD36800D42255 /* RecipeInstructionsView.swift */; };
 		5FDE3BFB2C4E1DB000D42255 /* RecipeFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE3BFA2C4E1DB000D42255 /* RecipeFetcher.swift */; };
@@ -59,7 +57,6 @@
 		5FCF8BBC2C4ADD8C00E6ED9C /* sweetifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sweetifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FCF8BC02C4ADD8C00E6ED9C /* sweetifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sweetifyUITests.swift; sourceTree = "<group>"; };
 		5FCF8BC22C4ADD8C00E6ED9C /* sweetifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sweetifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5FCF8BD52C4ADF7900E6ED9C /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		5FCF8BD72C4AE0B700E6ED9C /* RecipesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesListViewModel.swift; sourceTree = "<group>"; };
 		5FCF8BD92C4AE13F00E6ED9C /* RecipeSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSummary.swift; sourceTree = "<group>"; };
 		5FCF8BDB2C4AE1AE00E6ED9C /* RecipeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetail.swift; sourceTree = "<group>"; };
@@ -67,7 +64,6 @@
 		5FCF8BDF2C4B12B600E6ED9C /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
 		5FCF8BE12C4B180900E6ED9C /* RecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsView.swift; sourceTree = "<group>"; };
 		5FCF8BE42C4CD28B00E6ED9C /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
-		5FDE3BF42C4DC99100D42255 /* notsure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notsure.swift; sourceTree = "<group>"; };
 		5FDE3BF62C4DD35100D42255 /* RecipeIngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIngredientsView.swift; sourceTree = "<group>"; };
 		5FDE3BF82C4DD36800D42255 /* RecipeInstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeInstructionsView.swift; sourceTree = "<group>"; };
 		5FDE3BFA2C4E1DB000D42255 /* RecipeFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFetcher.swift; sourceTree = "<group>"; };
@@ -169,7 +165,6 @@
 				5FCF8BE32C4CD26E00E6ED9C /* Custom */,
 				5FCF8BDD2C4AE4E400E6ED9C /* RecipesListView.swift */,
 				5FCF8BE12C4B180900E6ED9C /* RecipeDetailsView.swift */,
-				5FDE3BF42C4DC99100D42255 /* notsure.swift */,
 				5FDE3BF62C4DD35100D42255 /* RecipeIngredientsView.swift */,
 				5FDE3BF82C4DD36800D42255 /* RecipeInstructionsView.swift */,
 			);
@@ -179,10 +174,8 @@
 		5FCF8BD12C4ADE5F00E6ED9C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5FCF8BD52C4ADF7900E6ED9C /* Ingredient.swift */,
 				5FCF8BD92C4AE13F00E6ED9C /* RecipeSummary.swift */,
 				5FCF8BDB2C4AE1AE00E6ED9C /* RecipeDetail.swift */,
-				5FDE3BFA2C4E1DB000D42255 /* RecipeFetcher.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,6 +185,7 @@
 			children = (
 				5FCF8BD72C4AE0B700E6ED9C /* RecipesListViewModel.swift */,
 				5FCF8BDF2C4B12B600E6ED9C /* RecipeDetailViewModel.swift */,
+				5FDE3BFA2C4E1DB000D42255 /* RecipeFetcher.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -342,12 +336,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FCF8BD62C4ADF7900E6ED9C /* Ingredient.swift in Sources */,
 				5FCF8BE22C4B180900E6ED9C /* RecipeDetailsView.swift in Sources */,
 				5FCF8BD82C4AE0B700E6ED9C /* RecipesListViewModel.swift in Sources */,
 				5FCF8BA82C4ADD8900E6ED9C /* ContentView.swift in Sources */,
 				5FCF8BE52C4CD28B00E6ED9C /* BackButton.swift in Sources */,
-				5FDE3BF52C4DC99100D42255 /* notsure.swift in Sources */,
 				5FCF8BDA2C4AE13F00E6ED9C /* RecipeSummary.swift in Sources */,
 				5FCF8BDE2C4AE4E400E6ED9C /* RecipesListView.swift in Sources */,
 				5FCF8BE02C4B12B600E6ED9C /* RecipeDetailViewModel.swift in Sources */,
@@ -529,7 +521,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -558,7 +551,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -581,7 +575,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N9R3B26AT7;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dd.sweetifyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -601,7 +595,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N9R3B26AT7;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dd.sweetifyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

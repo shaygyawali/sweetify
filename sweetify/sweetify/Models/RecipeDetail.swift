@@ -30,7 +30,22 @@ struct RecipeDetail: Codable {
         case youtubeURL = "strYoutube"
     }
     
-    //custom decorder to handle ingredient and measurement values
+    // Additional CodingKeys for ingredients and measurement decoding
+    struct AdditionalKeys: CodingKey {
+        var stringValue: String
+        var intValue: Int?
+        
+        init?(stringValue: String) {
+            self.stringValue = stringValue
+            self.intValue = nil
+        }
+        
+        init?(intValue: Int) {
+            return nil
+        }
+    }
+    
+    // Custom decoder to help decode + parse ingredient and measurement values
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         idMeal = try container.decode(String.self, forKey: .idMeal)
@@ -44,8 +59,6 @@ struct RecipeDetail: Codable {
         
         var ingredientsHolder = [String]()
         var measurementsHolder = [String]()
-        
-        //additional containers
         let additionalContainer = try decoder.container(keyedBy: AdditionalKeys.self)
         
         for i in 1...20 {
@@ -67,7 +80,7 @@ struct RecipeDetail: Codable {
         measures = measurementsHolder
     }
     
-    // custom initializer
+    // Custom initializer
     init(idMeal: String, name: String, category: String, area: String, instructions: String, thumbnail: String, tags: String?, youtubeURL: String?, ingredients: [String], measures: [String]) {
         self.idMeal = idMeal
         self.name = name
@@ -79,19 +92,5 @@ struct RecipeDetail: Codable {
         self.youtubeURL = youtubeURL
         self.ingredients = ingredients
         self.measures = measures
-    }
-    
-    struct AdditionalKeys: CodingKey {
-        var stringValue: String
-        var intValue: Int?
-        
-        init?(stringValue: String) {
-            self.stringValue = stringValue
-            self.intValue = nil
-        }
-        
-        init?(intValue: Int) {
-            return nil
-        }
     }
 }

@@ -18,6 +18,10 @@ class MockRecipeFetcher: RecipeFetching {
     
     
     func fetchRecipe(idMeal: String) async throws -> RecipeDetail {
+        if shouldReturnError {
+            throw NSError(domain: "MockErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey: "Mock error occurred"])
+        }
+        
         switch idMeal {
         case "52910":
             return RecipeDetail(

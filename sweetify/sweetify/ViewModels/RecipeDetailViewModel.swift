@@ -24,32 +24,31 @@ class RecipeDetailViewModel: ObservableObject {
     }
     
     func listifyTags(tags: String) -> [String] {
-        let tagList = tags.components(separatedBy: ".")
+        let tagList = tags.components(separatedBy: ",")
         return tagList
     }
     
-    func findRecipe(id: String){
+    func findRecipe(id: String) async throws {
         isLoading = true
         errorMessage = nil
         
-        // M
+        // UI updates made in main thread
         Task {
             do {
+                print("Fetching recipe\(id) from VM")
                 let finalDetails = try await recipeFetcher.fetchRecipe(idMeal: id)
                 await MainActor.run {
                     self.detail = finalDetails
                     self.isLoading = false
                 }
             } catch {
+                print("Error, Recipe not found: \(error.localizedDescription)")
                 await MainActor.run {
-                    print("🥊 ERROR \(error.localizedDescription)")
                     self.errorMessage = error.localizedDescription
                     self.isLoading = false
                 }
             }
             isLoading = false
         }
-        
     }
-    
 }

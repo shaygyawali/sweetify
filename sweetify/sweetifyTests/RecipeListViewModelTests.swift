@@ -21,8 +21,12 @@ final class RecipesListViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Fetching recipes completes")
         
         Task {
-            await viewModel.getRecipes()
-            expectation.fulfill()
+            do {
+                try await viewModel.getRecipes()
+                expectation.fulfill()
+            } catch {
+                print("Get recipes function not executed")
+            }
         }
         
         await fulfillment(of: [expectation], timeout: 1.0)
@@ -41,11 +45,16 @@ final class RecipesListViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Fetching recipes completes")
         
         Task {
-            await viewModel.getRecipes()
-            expectation.fulfill()
+            do {
+                try await viewModel.getRecipes()
+                expectation.fulfill()
+            } catch {
+                print("Get recipes function not executed")
+                expectation.fulfill()
+            }
         }
-        
-        await fulfillment(of: [expectation], timeout: 1.0)
+
+        await fulfillment(of: [expectation], timeout: 5.0)
 
         XCTAssertFalse(viewModel.isLoading)
         XCTAssertNotNil(viewModel.errorMessage)

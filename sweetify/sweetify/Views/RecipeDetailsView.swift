@@ -4,6 +4,7 @@ import SwiftUI
 struct RecipeDetailView: View {
     @EnvironmentObject var viewModel: RecipeDetailViewModel
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) var colorScheme
     enum Detail: String, CaseIterable, Identifiable {
         case ingredients, instructions
         var id: Self { self }
@@ -13,72 +14,90 @@ struct RecipeDetailView: View {
     var instructionsList: [String] = []
     
     var body: some View {
-        ZStack(alignment: .bottom){
-            VStack(alignment: .leading){
-                if let urlString = viewModel.detail?.thumbnail,
-                   let url = URL(string: urlString) {
-                    AsyncImage(url: url) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/1.8)
-                            .edgesIgnoringSafeArea(.top)
-                    } placeholder: {
-                        ProgressView()
-                    }
-                }
-                Spacer()
-            }
-            VStack(alignment: .center) {
-                RecipeHeader(viewModel: _viewModel)
-                HStack {
-                    ForEach(Detail.allCases) { detail in
-                        Button(action: {
-                            selectedDetail = detail
-                        }) {
-                            Text(detail.rawValue.capitalized)
-                                .font(.headline)
-                                .foregroundColor(selectedDetail == detail ? Color.white : Color("SelectInactiveFont"))
-                                .padding()
-                                .background(selectedDetail == detail ?  Color.pink : Color("SelectInactive"))
-                                .cornerRadius(10)
-                        }.frame(width:UIScreen.main.bounds.width * 0.40)
-                    }
-                }
-                .frame(width: UIScreen.main.bounds.width * 0.85, alignment: .leading)
-                
-                switch selectedDetail {
-                case .ingredients:
-                    if let ingredients = viewModel.detail?.ingredients {
-                        if let measures = viewModel.detail?.measures{
-                            RecipeIngredientsView(ingredients: ingredients, measures: measures)
+        if let errorMessage = viewModel.errorMessage {
+            ErrorView(errMsg: errorMessage)
+        }
+        
+        else {
+            ZStack(alignment: .bottom){
+                VStack(alignment: .leading){
+                    if let urlString = viewModel.detail?.thumbnail,
+                       let url = URL(string: urlString) {
+                        AsyncImage(url: url) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/1.8)
+                                .edgesIgnoringSafeArea(.top)
+                        } placeholder: {
+                            Image("sweetifyLoading")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/1.8)
+                                .edgesIgnoringSafeArea(.top)
                         }
-                    } else {
-                        Text("🫙 No Ingredients Found")
                     }
-                case .instructions:
-                    if let instructions = viewModel.detail?.instructions {
-                        let instructionsList = viewModel.listifyInstructions(instructions: instructions)
-                        RecipeInstructionsView(instructions: instructionsList)
+                    Spacer()
+                }
+                Spacer()
+                VStack(alignment: .center) {
+                    RecipeHeader(viewModel: _viewModel)
+                    HStack {
+                        ForEach(Detail.allCases) { detail in
+                            Button(action: {
+                                selectedDetail = detail
+                            }) {
+                                Text(detail.rawValue.capitalized)
+                                    .font(.headline)
+                                    .foregroundColor(selectedDetail == detail ? Color.white : Color("SelectInactiveFont"))
+                                    .padding()
+                                    .background(selectedDetail == detail ?  Color.pink : Color("SelectInactive"))
+                                    .cornerRadius(10)
+                            }
+                            .frame(width:UIScreen.main.bounds.width * 0.40)
+                        }
+                    }
+                    .frame(width: UIScreen.main.bounds.width * 0.85, alignment: .leading)
+                    .edgesIgnoringSafeArea(.all)
+                    
+                    switch selectedDetail {
+                    case .ingredients:
+                        if let ingredients = viewModel.detail?.ingredients {
+                            if let measures = viewModel.detail?.measures{
+                                RecipeIngredientsView(ingredients: ingredients, measures: measures)
+                            }
+                        } else {
+                            Text("No Ingredients Found")
+                        }
+                    case .instructions:
+                        if let instructions = viewModel.detail?.instructions {
+                            let instructionsList = viewModel.listifyInstructions(instructions: instructions)
+                            RecipeInstructionsView(instructions: instructionsList)
+                        }
+                    }
+                    Spacer()
+                }
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.75)
+                .edgesIgnoringSafeArea(.bottom)
+                .background(colorScheme == .dark ? Color.black : Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 50.0))
+                
+            }
+            .onAppear {
+                Task {
+                    do {
+                        try await viewModel.findRecipe(id: id)
+                    } catch {
+                        print("Failed to fetch recipe: \(error.localizedDescription)")
                     }
                 }
-                
-                Spacer()
             }
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.75)
-            .edgesIgnoringSafeArea(.bottom)
-            .background(Color(.white))
-            .clipShape(RoundedRectangle(cornerRadius: 50.0))
-            
-        }
-        .onAppear {
-            viewModel.findRecipe(id: id)
-        }
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                BackButton {
-                    dismiss()
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton {
+                        dismiss()
+                    }
                 }
             }
         }
@@ -95,20 +114,20 @@ struct RecipeHeader: View {
         
         if let tags = viewModel.detail?.tags {
             let tagList = viewModel.listifyTags(tags: tags)
-            ForEach(tagList.indices) { index in
-                Text("\(tagList[index]) ")
+            var prettyTags: String {
+                tagList.joined(separator: ", ")
+            }
+            Text("\(prettyTags)")
                 .frame(width: UIScreen.main.bounds.width * 0.85, alignment: .leading)
                 .foregroundColor(Color(.lightGray))
                 .padding(.bottom, 5)
-            }
         }
-        
         HStack (alignment: .bottom){
             VStack(alignment: .center) {
                 Image(systemName: "globe.americas.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 50, height: 50)
+                    .frame(width: 30, height: 30)
                 if let area = viewModel.detail?.area{
                     Text("\(area)")
                 }
@@ -118,7 +137,7 @@ struct RecipeHeader: View {
                 Image(systemName: "birthday.cake.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 50, height: 50)
+                    .frame(width: 30, height: 30)
                 Text("Dessert")
             }
             Spacer()
@@ -129,15 +148,31 @@ struct RecipeHeader: View {
                     Image(systemName: imgString)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 50, height: 50)
+                        .frame(width: 30, height: 30)
                     Text("Steps")
                 }
             }
+        }
+        .padding(.top, 10).padding(.bottom, 15)
+        .frame(width: UIScreen.main.bounds.width * 0.80, alignment: .leading)
+    }
+}
 
-        }.padding(.top, 10).padding(.bottom, 15)
-         .frame(width: UIScreen.main.bounds.width * 0.80, alignment: .leading)
-
-
+struct ErrorView: View {
+    var errMsg : String
+    var body: some View {
+        VStack{
+            Image(systemName: "x.circle.fill")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 50, height: 50)
+            Text("\(errMsg)")
+                .font(.headline)
+                .bold()
+        }
+        .frame(width: UIScreen.main.bounds.width * 0.90, height: 200)
+        .background(Color(.systemPink))
+        .clipShape(RoundedRectangle(cornerRadius: 25.0))
     }
 }
                            

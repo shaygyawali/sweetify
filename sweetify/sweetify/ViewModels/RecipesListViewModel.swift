@@ -18,13 +18,14 @@ class RecipesListViewModel: ObservableObject {
         self.recipeFetcher = recipeFetcher
     }
     
-    func getRecipes() {
+    func getRecipes() async throws {
         isLoading = true
         errorMessage = nil
         
-        // Making sure UI updates are made on the main thread
+        //UI updates made in main thread
         Task {
             do {
+                print("Fetching recipes FROM VM")
                 let fetchedRecipes = try await recipeFetcher.fetchRecipes()
                 await MainActor.run {
                     self.recipes = fetchedRecipes
@@ -33,6 +34,7 @@ class RecipesListViewModel: ObservableObject {
                 self.recipes = fetchedRecipes
             } catch {
                 await MainActor.run {
+                    print("found FROM VM")
                     self.errorMessage = error.localizedDescription
                     self.isLoading = false
                 }
