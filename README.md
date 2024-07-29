@@ -27,7 +27,9 @@ To get started with Sweetify's iOS app:
 
  2. Navigate to the project directory
 
+    ```
     cd sweetify
+    ```
 
  3. Open the file `sweetify.xcodeproj` in Xcode
  4. Run on either the simulator or a personal device, or view using ContentView Previews
