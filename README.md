@@ -5,4 +5,4 @@ Sweetify is a user-friendly dessert and dessert recipe browsing app. Search thro
 
 ## User Interface
 ### Browse Recipes
-<img src="https://github.com/user-attachments/assets/9eebf527-86f7-4f5c-8de6-9cb6ca2f4bdb" width="50">
+<img src="https://github.com/user-attachments/assets/9eebf527-86f7-4f5c-8de6-9cb6ca2f4bdb" width="250">
